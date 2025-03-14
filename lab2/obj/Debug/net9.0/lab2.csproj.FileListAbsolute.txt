@@ -1,0 +1,14 @@
+C:\Program Files\repos\modern-programming-tech\lab2\bin\Debug\net9.0\lab2.exe
+C:\Program Files\repos\modern-programming-tech\lab2\bin\Debug\net9.0\lab2.deps.json
+C:\Program Files\repos\modern-programming-tech\lab2\bin\Debug\net9.0\lab2.runtimeconfig.json
+C:\Program Files\repos\modern-programming-tech\lab2\bin\Debug\net9.0\lab2.dll
+C:\Program Files\repos\modern-programming-tech\lab2\bin\Debug\net9.0\lab2.pdb
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.AssemblyInfoInputs.cache
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.AssemblyInfo.cs
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.csproj.CoreCompileInputs.cache
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.dll
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\refint\lab2.dll
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.pdb
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\lab2.genruntimeconfig.cache
+C:\Program Files\repos\modern-programming-tech\lab2\obj\Debug\net9.0\ref\lab2.dll

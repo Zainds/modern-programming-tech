@@ -8,18 +8,17 @@ class Arbiter
 {
     static void Main()
     {
-        // Настройка кодировки консоли
         Console.OutputEncoding = Encoding.UTF8;
         
         TcpListener server = new TcpListener(IPAddress.Any, 5000);
         server.Start();
-        Console.WriteLine("Arbiter started. Waiting for players...");
+        Console.WriteLine("Арбитр запущен. Ожидание игроков...");
 
         // Принимаем подключение двух игроков
         TcpClient player1 = server.AcceptTcpClient();
-        Console.WriteLine("Player 1 connected.");
+        Console.WriteLine("Игрок 1 подключен.");
         TcpClient player2 = server.AcceptTcpClient();
-        Console.WriteLine("Player 2 connected.");
+        Console.WriteLine("Игрок 2 подключен.");
 
         // Создаем потоки для обмена сообщениями (используем UTF8)
         var stream1 = player1.GetStream();
@@ -30,42 +29,42 @@ class Arbiter
         var reader2 = new StreamReader(stream2, Encoding.UTF8);
         var writer2 = new StreamWriter(stream2, Encoding.UTF8) { AutoFlush = true };
 
-        // Сообщаем игрокам число раундов
+        // Отправляем игрокам количество раундов
         int totalRounds = 3;
         writer1.WriteLine(totalRounds);
         writer2.WriteLine(totalRounds);
 
         int score1 = 0, score2 = 0;
 
+        // Основной цикл игры
         for (int round = 1; round <= totalRounds; round++)
         {
-            Console.WriteLine($"\nRound {round}");
+            Console.WriteLine($"\nРаунд {round}");
 
-            // Получаем выборы от игроков
+            // Получаем выборы игроков
             string choice1 = reader1.ReadLine()?.Trim().ToUpper() ?? "";
             string choice2 = reader2.ReadLine()?.Trim().ToUpper() ?? "";
 
-            Console.WriteLine($"Player 1 chose: \"{choice1}\"");
-            Console.WriteLine($"Player 2 chose: \"{choice2}\"");
+            Console.WriteLine($"Игрок 1 выбрал: \"{choice1}\"");
+            Console.WriteLine($"Игрок 2 выбрал: \"{choice2}\"");
 
             // Определяем победителя
             string result = Evaluate(choice1, choice2);
-            if (result == "Player 1 wins!")
+            if (result == "Игрок 1 победил!")
                 score1++;
-            else if (result == "Player 2 wins!")
+            else if (result == "Игрок 2 победил!")
                 score2++;
 
-            // Отправляем результат обоим игрокам
-            writer1.WriteLine($"Result: {result}");
-            writer2.WriteLine($"Result: {result}");
+            writer1.WriteLine($"Результат: {result}");
+            writer2.WriteLine($"Результат: {result}");
         }
 
-        // Итоговая таблица результатов на сервере
-        Console.WriteLine("\nFinal results:");
-        Console.WriteLine($"Player 1: {score1} wins.");
-        Console.WriteLine($"Player 2: {score2} wins.");
+        // Вывод итогов игры
+        Console.WriteLine("\nИтоги игры:");
+        Console.WriteLine($"Игрок 1: {score1} побед.");
+        Console.WriteLine($"Игрок 2: {score2} побед.");
 
-        // Закрываем соединения
+        // Закрытие соединений
         player1.Close();
         player2.Close();
         server.Stop();
@@ -75,15 +74,17 @@ class Arbiter
     static string Evaluate(string c1, string c2)
     {
         if (c1 == c2)
-            return "Draw!";
+            return "Ничья!";
 
         // Правила игры:
-        // Rock beats Scissors, Scissors beats Paper, Paper beats Rock
+        // Rock (R) побеждает Scissors (S),
+        // Scissors (S) побеждают Paper (P),
+        // Paper (P) побеждает Rock (R)
         if ((c1 == "R" && c2 == "S") ||
             (c1 == "S" && c2 == "P") ||
             (c1 == "P" && c2 == "R"))
-            return "Player 1 wins!";
+            return "Игрок 1 победил!";
         else
-            return "Player 2 wins!";
+            return "Игрок 2 победил!";
     }
 }
